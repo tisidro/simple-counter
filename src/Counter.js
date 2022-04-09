@@ -22,9 +22,19 @@ export default class Counter extends Component {
       </div>
     )
   }
-  //changeCount function takes in a parameter "amount" then changes the count for the current state by amount by changeCount (1) amount input when + button is clicked
-  //and it decreases when - button is clicked b/c that changeCount input amount is a negative value
-  changeCount (amount) {
+  /*changeCount function takes in a parameter "amount" then changes the count for the current state by amount by changeCount (1) amount input when + button is clicked
+  and it decreases when - button is clicked b/c that changeCount input amount is a negative value. this.setState takes care of re-render!
+  
+  /*changeCount (amount) {
     this.setState({ count: this.state.count + amount })
+  }
+
+  BUT...BETTER YET, USE...*/
+
+  changeCount (amount) {
+    //function version takes into account the previous state--would work if you wanted to call it twice--  have click increment by more than 1 for example
+    this.setState(prevState => {
+      return { count: prevState.count + amount }
+    })
   }
 }
