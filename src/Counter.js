@@ -1,9 +1,12 @@
 import React, { Component } from 'react'
 
 export default class Counter extends Component {
+  //overrides constructor
   constructor (props) {
+    //makes sure props are set properly when you override constructor
     super(props)
 
+    //sets state to props you pass in for initial count in app.js
     this.state = {
       count: props.initialCount
     }
@@ -13,12 +16,14 @@ export default class Counter extends Component {
     return (
       <div>
         <button onClick={() => this.changeCount(-1)}>-</button>
+        {/* state is now tied to initial count via object for this.state above */}
         <span>{this.state.count}</span>
-        <button onClick={() => this.changeCount(+1)}>+</button>
+        <button onClick={() => this.changeCount(1)}>+</button>
       </div>
     )
   }
-
+  //changeCount function takes in a parameter "amount" then changes the count for the current state by amount by changeCount (1) amount input when + button is clicked
+  //and it decreases when - button is clicked b/c that changeCount input amount is a negative value
   changeCount (amount) {
     this.setState({ count: this.state.count + amount })
   }
