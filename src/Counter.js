@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { ThemeContext } from './App'
 
 export default class Counter extends Component {
   //overrides constructor
@@ -14,14 +15,24 @@ export default class Counter extends Component {
 
   render () {
     return (
-      <div>
-        <button onClick={() => this.changeCount(-1)}>-</button>
-        {/* state is now tied to initial count via object for this.state above */}
-        <span>{this.state.count}</span>
-        <button onClick={() => this.changeCount(1)}>+</button>
-      </div>
+      //consuming ThemeContext
+      <ThemeContext.Consumer>
+        {style => (
+          <div>
+            <button style={style} onClick={() => this.changeCount(-1)}>
+              -
+            </button>
+            {/* state is now tied to initial count via object for this.state above */}
+            <span>{this.state.count}</span>
+            <button style={style} onClick={() => this.changeCount(1)}>
+              +
+            </button>
+          </div>
+        )}
+      </ThemeContext.Consumer>
     )
   }
+
   /*changeCount function takes in a parameter "amount" then changes the count for the current state by amount by changeCount (1) amount input when + button is clicked
   and it decreases when - button is clicked b/c that changeCount input amount is a negative value. this.setState takes care of re-render!
   
